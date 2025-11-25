@@ -6,7 +6,7 @@ import os
 import csv
 from pathlib import Path
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='front', static_url_path='')
 CORS(app)
 
 def parse_references(context_text):
@@ -181,6 +181,16 @@ def get_experiment_details(experiment_name):
     
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+@app.route('/')
+def index():
+    """Sirve el archivo index.html del frontend"""
+    return app.send_static_file('index.html')
+
+@app.route('/<path:path>')
+def serve_frontend(path):
+    """Sirve archivos estáticos del frontend (CSS, JS, etc.)"""
+    return app.send_static_file(path)
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0",debug=True, port=5000)

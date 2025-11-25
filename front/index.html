@@ -503,7 +503,7 @@
         }
 
         function openModal(imagePath) {
-            modalImage.src = `http://localhost:5000/api/image/${imagePath}`;
+            modalImage.src = `/api/image/${imagePath}`;
             imageModal.classList.add('active');
         }
 
@@ -545,7 +545,7 @@
                         imageItem.onclick = () => openModal(img.path);
 
                         const imgTag = document.createElement('img');
-                        imgTag.src = `http://localhost:5000/api/image/${img.path}`;
+                        imgTag.src = `/api/image/${img.path}`;
                         imgTag.alt = img.description;
                         imgTag.onerror = () => {
                             imageItem.style.display = 'none';
@@ -657,7 +657,7 @@
             addLoadingMessage();
 
             try {
-                const response = await fetch('http://localhost:5000/api/query', {
+                const response = await fetch('/api/query', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

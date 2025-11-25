@@ -386,7 +386,7 @@
 
         async function loadExperiments() {
             try {
-                const response = await fetch('http://localhost:5000/api/experiments');
+                const response = await fetch('/api/experiments');
                 const data = await response.json();
                 
                 allExperiments = data.experiments;
@@ -454,7 +454,7 @@
                 document.getElementById('errorMessage').innerHTML = '';
 
                 // Cargar detalles
-                const response = await fetch(`http://localhost:5000/api/experiments/${experimentName}`);
+                const response = await fetch(`/api/experiments/${experimentName}`);
                 const data = await response.json();
 
                 // Mostrar estadísticas generales

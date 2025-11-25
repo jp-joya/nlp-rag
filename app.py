@@ -101,7 +101,7 @@ def get_image(filename):
 def get_experiments():
     """Obtiene lista de experimentos disponibles"""
     try:
-        experiments_dir = Path('../rag_eval/experiments')
+        experiments_dir = Path('./rag_eval/experiments')
         
         if not experiments_dir.exists():
             return jsonify({'error': 'Directorio de experimentos no encontrado'}), 404
@@ -143,7 +143,7 @@ def get_experiments():
 def get_experiment_details(experiment_name):
     """Obtiene detalles completos de un experimento"""
     try:
-        experiment_path = Path(f'../rag_eval/experiments/{experiment_name}.csv')
+        experiment_path = Path(f'./rag_eval/experiments/{experiment_name}.csv')
         
         if not experiment_path.exists():
             return jsonify({'error': 'Experimento no encontrado'}), 404

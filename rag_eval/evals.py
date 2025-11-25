@@ -10,7 +10,8 @@ from ragas.metrics import DiscreteMetric
 
 # Add parent directory to path to import rag_gemini module
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from rag_gemini import rag_answer, init_gemini
+from rag_gemini import rag_answer as rag_answer_chroma, init_gemini
+from neo4j.rag_neo4j import rag_answer as rag_answer_neo4j
 
 # Initialize Gemini
 load_dotenv()
@@ -21,6 +22,7 @@ genai.configure(api_key=api_key)
 
 # Initialize the Gemini model directly (will be used for scoring)
 gemini_model = init_gemini()
+RAG_BACKEND = os.getenv("RAG_BACKEND", "chroma").lower()
 
 
 def load_dataset():
@@ -123,12 +125,37 @@ def score_response(response_text, grading_notes):
         return "fail"
 
 
+def generate_rag_response(question: str):
+    """
+    Ejecuta el backend de RAG seleccionado (Chroma/Gemini o Neo4j/Gemini)
+    y normaliza la estructura de salida para el evaluador.
+    """
+    if RAG_BACKEND == "neo4j":
+        response = rag_answer_neo4j(question)
+        hits = response.get("context", [])
+        text_ctx = "\n\n".join([h.get("content", "") for h in hits if h.get("type") == "text"])
+        img_ctx = "\n\n".join([h.get("content", "") for h in hits if h.get("type") == "image_caption"])
+        return {
+            "answer": response.get("answer", ""),
+            "context_text": text_ctx,
+            "context_images": img_ctx,
+        }
+
+    # Default: Chroma + Gemini
+    response = rag_answer_chroma(question)
+    return {
+        "answer": response.get("answer", ""),
+        "context_text": response.get("context_text", ""),
+        "context_images": response.get("context_images", ""),
+    }
+
+
 @experiment()
 async def run_nutrition_experiment(row):
     """Run experiment with nutrition RAG system"""
     try:
         # Use your Gemini-based RAG system
-        response = rag_answer(row["question"])
+        response = generate_rag_response(row["question"])
 
         # Score the response
         score = score_response(
@@ -143,6 +170,7 @@ async def run_nutrition_experiment(row):
             "score": score,
             "context_text": response.get("context_text", "")[:500],  # Truncate for readability
             "context_images": response.get("context_images", "")[:500],
+            "backend": RAG_BACKEND,
         }
         return experiment_view
     
@@ -160,6 +188,7 @@ async def run_nutrition_experiment(row):
 
 async def main():
     print("=== Iniciando Evaluación del Sistema RAG de Nutrición ===\n")
+    print(f"Backend seleccionado: {RAG_BACKEND}\n")
     
     # Load dataset
     print("Cargando dataset de prueba...")

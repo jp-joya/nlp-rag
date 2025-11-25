@@ -169,6 +169,22 @@ def answer_with_gemini(model, question: str, hits: List[Dict]) -> str:
     return response.text
 
 
+def rag_answer(question: str) -> Dict[str, object]:
+    """
+    Genera una respuesta usando Neo4j como base de conocimiento y Gemini como modelo generativo.
+    Recibe únicamente la pregunta del usuario.
+    """
+    hits = retrieve_from_neo4j(question, top_k=5)
+    model = init_gemini()
+    answer = answer_with_gemini(model, question, hits)
+
+    return {
+        "question": question,
+        "context": hits,
+        "answer": answer,
+    }
+
+
 # ============================
 # MAIN DEMO
 # ============================

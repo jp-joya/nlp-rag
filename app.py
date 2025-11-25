@@ -13,11 +13,8 @@ def parse_references(context_text):
     """Extrae referencias del contexto de texto con su contenido."""
     references = []
     
-    # Busca patrones como:
-    # - [Fuente: nombre_archivo]
-    # contenido del texto
-    # (hasta la siguiente [Fuente: o fin del texto)
-    pattern = r'\[Fuente:\s*([^\]]+)\]\s*\n(.*?)(?=\[Fuente:|$)'
+    # Busca patrones como: [Fuente: nombre_archivo]
+    pattern = r'\[Fuente:\s*([^\]]+)\]\s*\n(.*?)(?=(?:\n|$)(?:- \[Fuente:|$))'
     matches = re.findall(pattern, context_text, re.DOTALL)
     
     seen_sources = set()
@@ -27,7 +24,7 @@ def parse_references(context_text):
             seen_sources.add(source)
             references.append({
                 'source': source,
-                'content': content.strip(),
+                'content': content.strip()[:300],  # limitar a 300 caracteres
                 'type': 'texto'
             })
     

@@ -2,6 +2,9 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from rag_gemini import rag_answer
 import re
+import os
+import csv
+from pathlib import Path
 
 app = Flask(__name__)
 CORS(app)
@@ -85,7 +88,6 @@ def query():
 @app.route('/api/image/<path:filename>', methods=['GET'])
 def get_image(filename):
     """Sirve imágenes desde el directorio data/raw/images/"""
-    import os
     from flask import send_file
     
     image_path = os.path.join('./data/raw/images', filename)
@@ -94,6 +96,91 @@ def get_image(filename):
         return jsonify({'error': 'Imagen no encontrada'}), 404
     
     return send_file(image_path, mimetype='image/jpeg')
+
+@app.route('/api/experiments', methods=['GET'])
+def get_experiments():
+    """Obtiene lista de experimentos disponibles"""
+    try:
+        experiments_dir = Path('../rag_eval/experiments')
+        
+        if not experiments_dir.exists():
+            return jsonify({'error': 'Directorio de experimentos no encontrado'}), 404
+        
+        # Obtener todos los archivos CSV
+        csv_files = list(experiments_dir.glob('*.csv'))
+        
+        experiments = []
+        for csv_file in sorted(csv_files):
+            # Leer el CSV para obtener estadísticas
+            with open(csv_file, 'r', encoding='utf-8') as f:
+                reader = csv.DictReader(f)
+                rows = list(reader)
+                
+                if rows:
+                    total = len(rows)
+                    passed = sum(1 for r in rows if r.get('score') == 'pass')
+                    failed = total - passed
+                    success_rate = (passed / total * 100) if total > 0 else 0
+                    
+                    experiments.append({
+                        'name': csv_file.stem,
+                        'filename': csv_file.name,
+                        'total': total,
+                        'passed': passed,
+                        'failed': failed,
+                        'success_rate': round(success_rate, 1)
+                    })
+        
+        return jsonify({
+            'experiments': experiments,
+            'count': len(experiments)
+        }), 200
+    
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/experiments/<experiment_name>', methods=['GET'])
+def get_experiment_details(experiment_name):
+    """Obtiene detalles completos de un experimento"""
+    try:
+        experiment_path = Path(f'../rag_eval/experiments/{experiment_name}.csv')
+        
+        if not experiment_path.exists():
+            return jsonify({'error': 'Experimento no encontrado'}), 404
+        
+        # Leer el CSV
+        with open(experiment_path, 'r', encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            rows = list(reader)
+        
+        if not rows:
+            return jsonify({'error': 'Experimento vacío'}), 400
+        
+        # Preparar datos
+        total = len(rows)
+        passed = sum(1 for r in rows if r.get('score') == 'pass')
+        failed = total - passed
+        success_rate = (passed / total * 100) if total > 0 else 0
+        
+        # Separar por resultado
+        passed_tests = [r for r in rows if r.get('score') == 'pass']
+        failed_tests = [r for r in rows if r.get('score') == 'fail']
+        
+        return jsonify({
+            'name': experiment_name,
+            'statistics': {
+                'total': total,
+                'passed': passed,
+                'failed': failed,
+                'success_rate': round(success_rate, 1)
+            },
+            'passed_tests': passed_tests,
+            'failed_tests': failed_tests,
+            'all_tests': rows
+        }), 200
+    
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0",debug=True, port=5000)

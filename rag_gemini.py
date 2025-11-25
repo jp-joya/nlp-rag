@@ -39,7 +39,7 @@ def get_chroma_collections():
 
     return col_text, col_images
 
-def retrieve_context(user_query, col_text, col_images, k_text=4, k_img=1):
+def retrieve_context(user_query, col_text, col_images, k_text=1, k_img=1):
     # búsqueda en textos
     res_text = col_text.query(
         query_texts=[user_query],
@@ -59,7 +59,7 @@ def retrieve_context(user_query, col_text, col_images, k_text=4, k_img=1):
     img_dists = res_img.get("distances", [[]])[0]
 
     # define tu umbral (ajústalo según tu dataset)
-    SIM_THRESHOLD = 1.3
+    SIM_THRESHOLD = 1
 
     filtered = [
         (doc, meta)
@@ -95,25 +95,53 @@ def retrieve_context(user_query, col_text, col_images, k_text=4, k_img=1):
 
 def build_prompt(user_query, ctx_text, ctx_img):
     prompt = f"""
-Eres un asistente experto en nutrición y hábitos saludables.
+Eres un asistente de salud y bienestar especializado en nutrición y hábitos saludables.
 
-Responde en ESPAÑOL, de forma clara y breve, usando ÚNICAMENTE la información del contexto.
+Tu objetivo es proporcionar información clara, confiable y centrada en la salud integral de la persona. 
+Comunica con calidez, empatía y de manera accesible, como lo haría un orientador de salud certificado.
 
-Si la información no está en el contexto, dilo explícitamente.
+=== REGLA FUNDAMENTAL ===
+⚠️ SOLO puedes utilizar información que aparezca en el contexto proporcionado.
+NO inventes, NO especules, NO des consejos basados en conocimiento general.
+Si el contexto no contiene la información solicitada, sé honesto y transparente sobre ello.
 
-### CONTEXTO DE TEXTO
-{ctx_text if ctx_text else '(sin contexto de texto relevante)'}
+### CONTEXTO DISPONIBLE
 
-### CONTEXTO DE IMÁGENES (DESCRIPCIONES)
-{ctx_img if ctx_img else '(sin contexto de imágenes relevante)'}
+📖 INFORMACIÓN TEXTUAL:
+{ctx_text if ctx_text else '(No hay información textual disponible para esta consulta)'}
+
+🖼️ REFERENCIAS VISUALES:
+{ctx_img if ctx_img else '(No hay referencias visuales disponibles)'}
 
 ### PREGUNTA DEL USUARIO
 {user_query}
 
-### INSTRUCCIONES PARA LA RESPUESTA
-- Responde en español.
-- No inventes datos que no estén en el contexto.
-- Puedes citar ejemplos basados en las descripciones de imágenes si ayudan a ilustrar.
+### INSTRUCCIONES PARA TU RESPUESTA
+
+1. **Fundamentación**: Siempre basa tu respuesta exclusivamente en el contexto anterior.
+
+2. **Estructura**: Organiza la respuesta de manera clara:
+   - Saludo breve y empático
+   - Respuesta directa a la pregunta
+   - Citas específicas del contexto si es relevante
+   - Referencias a imágenes o ejemplos si ayudan a ilustrar
+
+3. **Tono**: Amigable, profesional y orientado a la salud
+   - Utiliza un lenguaje accesible
+   - Evita tecnicismos innecesarios
+   - Sé motivador sin ser alarmista
+
+4. **Limitaciones**: 
+   - Si la información no está en el contexto, di claramente: "La información sobre [tema] no está disponible en mis recursos actuales."
+   - NO hagas suposiciones o inferencias fuera del contexto
+   - NO proporciones diagnósticos médicos generales
+
+5. **Formato**: 
+   - Responde siempre en ESPAÑOL
+   - Usa bullet points o numeración cuando sea apropiado
+   - Mantén la respuesta concisa pero completa
+
+6. **Validación**: Verifica que CADA afirmación en tu respuesta esté respaldada por el contexto.
 """
     return prompt
 

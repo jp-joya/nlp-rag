@@ -1,0 +1,16 @@
+# Requisitos adicionales para RAGAS
+
+# RAGAS core
+ragas>=0.0.15
+datasets>=2.14.0
+
+# Para visualización y reportes
+pandas>=1.5.0
+openpyxl>=3.1.0
+
+# Para métricas adicionales (opcional)
+scikit-learn>=1.3.0
+scipy>=1.11.0
+
+# Para procesamiento de texto
+nltk>=3.8.0

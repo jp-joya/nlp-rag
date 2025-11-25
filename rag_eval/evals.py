@@ -7,11 +7,13 @@ from dotenv import load_dotenv
 
 from ragas import Dataset, experiment
 from ragas.metrics import DiscreteMetric
+sys.path.append('../neo4j')  # Esto agrega la carpeta 'neo4j' a la ruta de búsqueda de módulos
+sys.path.append('neo4j')  # Esto agrega la carpeta 'neo4j' a la ruta de búsqueda de módulos
 
 # Add parent directory to path to import rag_gemini module
 sys.path.insert(0, str(Path(__file__).parent.parent))
 from rag_gemini import rag_answer as rag_answer_chroma, init_gemini
-from neo4j.rag_neo4j import rag_answer as rag_answer_neo4j
+from rag_neo4j import rag_answer as rag_answer_neo4j
 
 # Initialize Gemini
 load_dotenv()

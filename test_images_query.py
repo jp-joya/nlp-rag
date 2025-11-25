@@ -4,7 +4,7 @@ client = chromadb.PersistentClient(path="./chroma_db")
 collection = client.get_collection("nutricion_imagenes")
 
 query = collection.query(
-    query_texts=["imagen de un vaso de agua"],
+    query_texts=["imagen de una nuez"],
     n_results=3
 )
 

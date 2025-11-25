@@ -39,7 +39,7 @@ def get_chroma_collections():
 
     return col_text, col_images
 
-def retrieve_context(user_query, col_text, col_images, k_text=1, k_img=1):
+def retrieve_context(user_query, col_text, col_images, k_text=2, k_img=1):
     # búsqueda en textos
     res_text = col_text.query(
         query_texts=[user_query],
@@ -59,7 +59,7 @@ def retrieve_context(user_query, col_text, col_images, k_text=1, k_img=1):
     img_dists = res_img.get("distances", [[]])[0]
 
     # define tu umbral (ajústalo según tu dataset)
-    SIM_THRESHOLD = 1
+    SIM_THRESHOLD = 0.9
 
     filtered = [
         (doc, meta)

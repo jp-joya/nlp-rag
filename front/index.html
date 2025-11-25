@@ -426,7 +426,10 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🥗 RAG Nutrición</h1>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <h1>🥗 RAG Nutrición</h1>
+                <a href="experiments.html" style="color: white; text-decoration: none; padding: 10px 20px; background: rgba(255,255,255,0.2); border-radius: 6px; font-size: 14px; transition: all 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">📊 Ver Experimentos</a>
+            </div>
             <p>Asistente inteligente sobre nutrición y hábitos saludables</p>
         </div>
 
@@ -500,7 +503,7 @@
         }
 
         function openModal(imagePath) {
-            modalImage.src = `http://localhost:5000/api/image/${imagePath}`;
+            modalImage.src = `/api/image/${imagePath}`;
             imageModal.classList.add('active');
         }
 
@@ -542,7 +545,7 @@
                         imageItem.onclick = () => openModal(img.path);
 
                         const imgTag = document.createElement('img');
-                        imgTag.src = `http://localhost:5000/api/image/${img.path}`;
+                        imgTag.src = `/api/image/${img.path}`;
                         imgTag.alt = img.description;
                         imgTag.onerror = () => {
                             imageItem.style.display = 'none';
@@ -654,7 +657,7 @@
             addLoadingMessage();
 
             try {
-                const response = await fetch('http://localhost:5000/api/query', {
+                const response = await fetch('/api/query', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

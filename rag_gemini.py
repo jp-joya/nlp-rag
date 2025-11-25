@@ -81,7 +81,8 @@ def retrieve_context(user_query, col_text, col_images, k_text=2, k_img=1):
 
     ctx_text = ""
     for doc, meta in zip(text_chunks, text_metas):
-        src = meta.get("source", "desconocido")
+        print(meta)
+        src = meta.get("source_file", "desconocido")
         ctx_text += f"- [Fuente: {src}]\n{doc}\n\n"
 
     # Construir contexto de imágenes (captions)

@@ -27,7 +27,6 @@ def parse_references(context_text):
                 'content': content.strip()[:300],  # limitar a 300 caracteres
                 'type': 'texto'
             })
-    
     return references
 
 def parse_images(context_images):
@@ -57,10 +56,21 @@ def query():
         
         result = rag_answer(user_query)
         
+        print("=== Resultados RAG ===")
         # Extraer referencias e imágenes
         references = parse_references(result['context_text'])
         image_paths, image_descriptions = parse_images(result['context_images'])
-        
+
+        # Si la fuente está vacía o es 'desconocido', intentar extraer el nombre del archivo fuente del contexto
+        for ref in references:
+            if not ref['source'] or ref['source'].lower() == 'desconocido':
+                # Buscar patrón de archivo fuente en el contexto
+                match = re.search(r'Fuente:\s*([\w\-.]+)', result['context_text'])
+                if match:
+                    ref['source'] = match.group(1)
+                else:
+                    ref['source'] = 'Sin fuente'
+
         # Construir lista de imágenes con sus descripciones
         images_with_desc = []
         for idx, path in enumerate(image_paths):
@@ -69,7 +79,7 @@ def query():
                 'path': path.strip(),
                 'description': description.strip()
             })
-        
+
         return jsonify({
             'query': result['query'],
             'answer': result['answer'],

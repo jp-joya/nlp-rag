@@ -1,98 +1,204 @@
 import os
 import glob
 import chromadb
-from langchain_community.document_loaders import UnstructuredMarkdownLoader
+from sentence_transformers import SentenceTransformer
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_experimental.text_splitter import SemanticChunker
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_community.document_loaders import (
+    UnstructuredMarkdownLoader,
+    TextLoader
+)
 
 
-# ------------ CONFIGURACIÓN ------------------
+# =============================
+# CONFIG
+# =============================
 
 DATA_PATH = "data/raw/text"
 CHROMA_PATH = "./chroma_db"
+COLLECTION_NAME = "nutricion_textos"
 
-# Embeddings recomendados (rápidos y buenos)
-EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
-
-# ----------------------------------------------
+EMBEDDING_MODEL = "BAAI/bge-large-en-v1.5"
 
 
-def load_markdown_files():
-    files = glob.glob(os.path.join(DATA_PATH, "*.md"))
-    documents = []
+# =============================
+# EMBEDDING WRAPPER PARA SemanticChunker
+# =============================
 
-    for file in files:
+class STEmbeddingWrapper:
+    """
+    Wrapper para SentenceTransformer compatible con SemanticChunker.
+    """
+    def __init__(self, model_name):
+        self.model = SentenceTransformer(model_name)
+
+    def embed_documents(self, texts):
+        return self.model.encode(texts, convert_to_numpy=True).tolist()
+
+    def embed_query(self, text):
+        return self.model.encode([text], convert_to_numpy=True)[0].tolist()
+
+
+# =============================
+# CARGA DE DOCUMENTOS
+# =============================
+
+def load_all_documents():
+    """
+    Carga .md y .txt desde la carpeta DATA_PATH.
+    Retorna una lista de langchain Documents, con metadata del archivo.
+    """
+    docs = []
+    
+    md_files = glob.glob(os.path.join(DATA_PATH, "*.md"))
+    txt_files = glob.glob(os.path.join(DATA_PATH, "*.txt"))
+    
+    print(f"[INFO] Archivos .md encontrados: {len(md_files)}")
+    print(f"[INFO] Archivos .txt encontrados: {len(txt_files)}")
+
+    # Markdown
+    for file in md_files:
         loader = UnstructuredMarkdownLoader(file)
-        docs = loader.load()
+        loaded = loader.load()
+        for doc in loaded:
+            doc.metadata["source_file"] = os.path.basename(file)
+        docs.extend(loaded)
 
-        # Agregamos metadatos útiles
-        for d in docs:
-            d.metadata["source"] = os.path.basename(file)
+    # Text files
+    for file in txt_files:
+        loader = TextLoader(file, encoding="utf-8")
+        loaded = loader.load()
+        for doc in loaded:
+            doc.metadata["source_file"] = os.path.basename(file)
+        docs.extend(loaded)
 
-        documents.extend(docs)
-
-    print(f"[INFO] Archivos cargados: {len(documents)}")
-    return documents
+    print(f"[INFO] Documentos cargados: {len(docs)}")
+    return docs
 
 
-def recursive_chunking(docs):
+# =============================
+# CHUNKING RECURSIVE
+# =============================
+
+def recursive_chunking(docs, chunk_size=400, chunk_overlap=80):
     splitter = RecursiveCharacterTextSplitter(
-        chunk_size=400,
-        chunk_overlap=50,
-        separators=["\n\n", "\n", ".", " ", ""]
+        chunk_size=chunk_size,
+        chunk_overlap=chunk_overlap
     )
-    chunks = splitter.split_documents(docs)
-    print(f"[INFO] Chunks creados (Recursive): {len(chunks)}")
-    return chunks
+    return splitter.split_documents(docs)
 
+
+# =============================
+# CHUNKING SEMANTIC
+# =============================
 
 def semantic_chunking(docs):
-    embeddings = HuggingFaceEmbeddings(model_name=EMBEDDING_MODEL)
-    chunker = SemanticChunker(embeddings)
-    chunks = chunker.split_documents(docs)
-    print(f"[INFO] Chunks creados (Semantic): {len(chunks)}")
-    return chunks
+    embedder = STEmbeddingWrapper(EMBEDDING_MODEL)
+    chunker = SemanticChunker(embeddings=embedder)
+    return chunker.split_documents(docs)
 
 
-def store_in_chroma(docs):
-    print("[INFO] Conectando a ChromaDB...")
-    client = chromadb.PersistentClient(path=CHROMA_PATH)
+# =============================
+# OBTENER ARCHIVOS YA INGRESADOS
+# =============================
 
-    collection = client.get_or_create_collection(
-        name="nutricion_textos",
-        metadata={"description": "Chunks de documentos de nutrición"}
-    )
+def get_already_ingested_files(collection):
+    results = collection.get(include=["metadatas"], limit=999999)
+    ingested = set()
 
-    ids = [f"doc_{i}" for i in range(len(docs))]
-    texts = [d.page_content for d in docs]
-    metadatas = [d.metadata for d in docs]
+    for meta in results.get("metadatas", []):
+        file = meta.get("source_file")
+        if file:
+            ingested.add(file)
 
-    print("[INFO] Insertando en Chroma...")
-    collection.add(
-        ids=ids,
-        documents=texts,
-        metadatas=metadatas
-    )
+    return ingested
 
-    print("[INFO] Datos insertados correctamente.")
 
+# =============================
+# INGEST EN CHROMA
+# =============================
+
+def ingest_chunks(collection, chunks, new_files):
+    """
+    Inserta chunks solo para archivos NUEVOS.
+    """
+    to_insert_ids = []
+    to_insert_docs = []
+    to_insert_meta = []
+
+    for i, chunk in enumerate(chunks):
+        file_src = chunk.metadata.get("source_file")
+
+        # Solo insertar si el archivo es nuevo
+        if file_src not in new_files:
+            continue
+
+        to_insert_ids.append(f"{file_src}_{i}")
+        to_insert_docs.append(chunk.page_content)
+        to_insert_meta.append({
+            "source_file": file_src,
+            "type": "text_chunk"
+        })
+
+    if to_insert_ids:
+        collection.add(
+            ids=to_insert_ids,
+            documents=to_insert_docs,
+            metadatas=to_insert_meta
+        )
+        print(f"[INFO] Insertados {len(to_insert_ids)} chunks nuevos.")
+    else:
+        print("[INFO] No hay nuevos archivos para insertar.")
+
+
+# =============================
+# MAIN
+# =============================
 
 def main():
-    # 1. Cargar documentos originales
-    docs = load_markdown_files()
+    print("\n========== Ingest Textos ==========")
 
-    # 2. Chunking híbrido: recursion + semantic
-    chunks_recursive = recursive_chunking(docs)
-    chunks_semantic = semantic_chunking(docs)
+    docs = load_all_documents()
 
-    # 3. Unir ambos tipos de chunks
-    final_chunks = chunks_recursive + chunks_semantic
+    # Obtener lista de archivos de los documentos cargados
+    all_files = sorted(list(set([d.metadata["source_file"] for d in docs])))
 
-    print(f"[INFO] Total de chunks preparados: {len(final_chunks)}")
+    # Conectar con Chroma
+    client = chromadb.PersistentClient(path=CHROMA_PATH)
+    collection = client.get_or_create_collection(
+        COLLECTION_NAME,
+        metadata={"hnsw:space": "cosine"}
+    )
 
-    # 4. Guardar en Chroma
-    store_in_chroma(final_chunks)
+    already = get_already_ingested_files(collection)
+
+    # Archivos nuevos
+    new_files = [f for f in all_files if f not in already]
+
+    print(f"[INFO] Archivos ya ingresados: {len(already)}")
+    print(f"[INFO] Archivos nuevos: {new_files}")
+
+    if not new_files:
+        print("[INFO] No hay nuevos archivos por procesar.")
+        return
+
+    # Filtrar docs para solo archivos nuevos
+    docs_to_process = [d for d in docs if d.metadata["source_file"] in new_files]
+
+    # Chunking
+    print("[INFO] Generando chunks recursive...")
+    chunks_r = recursive_chunking(docs_to_process)
+
+    print("[INFO] Generando chunks semantic... puede tardar")
+    chunks_s = semantic_chunking(docs_to_process)
+
+    all_chunks = chunks_r + chunks_s
+    print(f"[INFO] Total chunks generados: {len(all_chunks)}")
+
+    # Ingest
+    ingest_chunks(collection, all_chunks, new_files)
+
+    print("\n[OK] Ingest completo.\n")
 
 
 if __name__ == "__main__":

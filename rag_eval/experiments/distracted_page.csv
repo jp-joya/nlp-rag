@@ -1,0 +1,6 @@
+question,grading_notes,response,score,context_text,context_images
+¿Qué alimentos son ricos en fibra?,"- frutas como manzanas, peras - verduras como brócoli, zanahorias - legumbres como lentejas, frijoles - granos enteros como avena, quinoa",ERROR: Collection [nutricion_textos] does not exist,fail,,
+¿Cuál es la importancia de la hidratación?,- regula temperatura corporal - transporta nutrientes - elimina toxinas - mejora función cognitiva - mantiene piel saludable,ERROR: Collection [nutricion_textos] does not exist,fail,,
+¿Cuáles son las grasas saludables?,"- ácidos grasos omega-3 y omega-6 - aguacate, nueces, aceite de oliva - benefician salud cardiovascular - importantes para absorción de vitaminas",ERROR: Collection [nutricion_textos] does not exist,fail,,
+¿Qué son los carbohidratos complejos?,"- fuente principal de energía sostenida - contienen fibra - incluyen granos enteros, legumbres - liberan glucosa gradualmente",ERROR: Collection [nutricion_textos] does not exist,fail,,
+¿Cuáles son los beneficios de las proteínas?,- esenciales para construcción y reparación de tejidos - importantes para el sistema inmune - ayudan en la producción de enzimas y hormonas - contribuyen a la saciedad,ERROR: Collection [nutricion_textos] does not exist,fail,,

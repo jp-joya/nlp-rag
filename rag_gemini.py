@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 import chromadb
 import google.generativeai as genai
 from dotenv import load_dotenv
@@ -14,7 +15,8 @@ warnings.filterwarnings(
 
 # -------------- CONFIGURACIÓN -----------------
 
-CHROMA_PATH = "./chroma_db"
+# Use absolute path to chroma_db (project root)
+CHROMA_PATH = str(Path(__file__).parent / "chroma_db")
 TEXT_COLLECTION = "nutricion_textos"
 IMAGE_COLLECTION = "nutricion_imagenes"
 

@@ -1,0 +1,174 @@
+question,grading_notes,response,score,context_text,context_images,backend
+¿Cómo se debe planificar una comida equilibrada?,- la planificación de comidas es estrategia efectiva - asegura nutrición mejorada - ayuda a balancear macronutrientes - control de peso y porciones - distribuir proteína a lo largo del día,"La planificación de comidas es una estrategia efectiva para lograr objetivos nutricionales. Al planificar, se mejora la nutrición, se gasta menos dinero, se reduce el desperdicio y se evitan decisiones impulsivas poco saludables. Planificar comidas ayuda a reducir las decisiones diarias sobre qué comer, permite cocinar de forma más eficiente y disminuye el estrés. Además, facilita la adherencia a hábitos saludables y el éxito a largo plazo. Para empezar, es importante evaluar tus necesidades.
+",fail,"**Función Física**
+- Mejora equilibrio y coordinación
+- Aumenta la flexibilidad
+- Previene caídas en personas mayores
+- Mejora la movilidad general
+- Facilita actividades de la vida diaria
+
+## Tipos de Actividad Física Ligera
+
+### Caminar
+Es la forma más accesible y natural de actividad física ligera.
+
+# Estrés y Bienestar Mental: Salud Integral
+
+El bienestar mental es tan importante como la salud física para lograr una vida saludable y equilibrada. El estrés crónico afecta la alimentación, el s",,neo4j
+¿Qué funciones tiene el microbioma intestinal?,- beneficiarse de comer conscientemente con fibra y fermentados - beneficiarse de manejar el estrés - beneficiarse de moverse regularmente - mejora con dormir 7-9 horas - se daña con dieta ultraprocesada sin fibra - se daña con alcohol excesivo,"ERROR: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash
+Please retry in 9.366398064s. [links {
+  description: ""Learn more about Gemini API quotas""
+  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
+}
+, violations {
+  quota_metric: ""generativelanguage.googleapis.com/generate_content_free_tier_requests""
+  quota_id: ""GenerateRequestsPerMinutePerProjectPerModel-FreeTier""
+  quota_dimensions {
+    key: ""model""
+    value: ""gemini-2.0-flash""
+  }
+  quota_dimensions {
+    key: ""location""
+    value: ""global""
+  }
+  quota_value: 15
+}
+, retry_delay {
+  seconds: 9
+}
+]",fail,,,
+¿Cuáles son las etapas principales del proceso digestivo y cuánto tiempo toma cada una?,- boca (0-30 segundos) masticación - esófago (5-10 segundos) peristaltismo - estómago (1-4 horas) - intestino delgado (3-6 horas) absorción de nutrientes - intestino grueso (12-48 horas) - tiempo total varía según comida,"ERROR: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash
+Please retry in 9.225198795s. [links {
+  description: ""Learn more about Gemini API quotas""
+  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
+}
+, violations {
+  quota_metric: ""generativelanguage.googleapis.com/generate_content_free_tier_requests""
+  quota_id: ""GenerateRequestsPerMinutePerProjectPerModel-FreeTier""
+  quota_dimensions {
+    key: ""model""
+    value: ""gemini-2.0-flash""
+  }
+  quota_dimensions {
+    key: ""location""
+    value: ""global""
+  }
+  quota_value: 15
+}
+, retry_delay {
+  seconds: 9
+}
+]",fail,,,
+¿Qué minerales son esenciales y para qué sirven?,- los minerales son micronutrientes - hierro y calcio son importantes - vitaminas también son micronutrientes - los alimentos proporcionan micronutrientes - se clasifican en macronutrientes y micronutrientes,"Los minerales son micronutrientes esenciales para que el cuerpo funcione correctamente, regulando procesos vitales y previniendo enfermedades. Se necesitan en pequeñas cantidades y su deficiencia puede causar problemas graves. Las frutas y verduras son ricas en minerales.
+",fail,"**Beneficios**
+- Ricas en vitaminas y minerales
+- Altas en fibra
+- Bajas en calorías
+- Satisfacen antojos de dulce naturalmente
+- Muy prácticas de llevar
+
+**Porciones Recomendadas**
+- Una fruta mediana
+- O una taza de berries
+- O varias uvas/cerezas
+
+### Frutas Secas: Nutrientes Concentrados
+
+### Grupos de Alimentos
+Una alimentación equilibrada debe incluir:
+1. **Frutas y verduras**: ricas en vitaminas, minerales y fibra
+2. **Granos y cereales**: fuente de energía y fibra (preferiblemente integr",,neo4j
+¿Cuáles son las funciones de la vitamina D y dónde se encuentra?,"- absorción de calcio y salud ósea - función inmunológica - regulación hormonal - salud mental (deficiencia asociada a depresión) - fuentes: luz solar 15-30 minutos 3-4 veces por semana, pescados grasos (salmón, sardinas), huevos, productos lácteos enriquecidos, champiñones","ERROR: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash
+Please retry in 8.113206966s. [links {
+  description: ""Learn more about Gemini API quotas""
+  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
+}
+, violations {
+  quota_metric: ""generativelanguage.googleapis.com/generate_content_free_tier_requests""
+  quota_id: ""GenerateRequestsPerMinutePerProjectPerModel-FreeTier""
+  quota_dimensions {
+    key: ""model""
+    value: ""gemini-2.0-flash""
+  }
+  quota_dimensions {
+    key: ""location""
+    value: ""global""
+  }
+  quota_value: 15
+}
+, retry_delay {
+  seconds: 8
+}
+]",fail,,,
+¿Cuáles son los beneficios de la planificación de comidas?,"- nutrición mejorada: asegura variedad y balanceo de macronutrientes - control de peso y porciones - ahorro de dinero (compras eficientes, aprovecha ofertas) - reduce desperdicio de alimentos - menos estrés sobre qué comer - mayor consistencia y sostenibilidad - evita decisiones impulsivas poco saludables","ERROR: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash
+Please retry in 7.982827872s. [links {
+  description: ""Learn more about Gemini API quotas""
+  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
+}
+, violations {
+  quota_metric: ""generativelanguage.googleapis.com/generate_content_free_tier_requests""
+  quota_id: ""GenerateRequestsPerMinutePerProjectPerModel-FreeTier""
+  quota_dimensions {
+    key: ""model""
+    value: ""gemini-2.0-flash""
+  }
+  quota_dimensions {
+    key: ""location""
+    value: ""global""
+  }
+  quota_value: 15
+}
+, retry_delay {
+  seconds: 7
+}
+]",fail,,,
+¿Qué es el ayuno intermitente 16/8 y cuáles son sus beneficios?,"- formato: ayunas 16 horas, ventana de alimentación de 8 horas - fácil de implementar y flexible - mejora sensibilidad a insulina - promueve pérdida de peso - activa autofagia (limpieza celular) - beneficios metabólicos documentados - requiere disciplina","ERROR: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash
+Please retry in 7.856674587s. [links {
+  description: ""Learn more about Gemini API quotas""
+  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
+}
+, violations {
+  quota_metric: ""generativelanguage.googleapis.com/generate_content_free_tier_requests""
+  quota_id: ""GenerateRequestsPerMinutePerProjectPerModel-FreeTier""
+  quota_dimensions {
+    key: ""model""
+    value: ""gemini-2.0-flash""
+  }
+  quota_dimensions {
+    key: ""location""
+    value: ""global""
+  }
+  quota_value: 15
+}
+, retry_delay {
+  seconds: 7
+}
+]",fail,,,
+¿Qué factores dañan el microbioma intestinal?,- antibióticos (destruyen bacterias buenas y malas) - pesticidas en alimentos no orgánicos - estrés crónico (reduce diversidad bacteriana) - dieta ultraprocesada sin fibra - falta de sueño (7-9 horas necesarias) - alcohol excesivo (daña pared intestinal) - falta de ejercicio (reduce diversidad),"ERROR: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 15, model: gemini-2.0-flash
+Please retry in 7.725008025s. [links {
+  description: ""Learn more about Gemini API quotas""
+  url: ""https://ai.google.dev/gemini-api/docs/rate-limits""
+}
+, violations {
+  quota_metric: ""generativelanguage.googleapis.com/generate_content_free_tier_requests""
+  quota_id: ""GenerateRequestsPerMinutePerProjectPerModel-FreeTier""
+  quota_dimensions {
+    key: ""model""
+    value: ""gemini-2.0-flash""
+  }
+  quota_dimensions {
+    key: ""location""
+    value: ""global""
+  }
+  quota_value: 15
+}
+, retry_delay {
+  seconds: 7
+}
+]",fail,,,

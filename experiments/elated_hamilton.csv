@@ -1,0 +1,169 @@
+question,grading_notes,response,score,context_text,context_images,backend
+¿Cuáles son las funciones de la vitamina D y dónde se encuentra?,"- absorción de calcio y salud ósea - función inmunológica - regulación hormonal - salud mental (deficiencia asociada a depresión) - fuentes: luz solar 15-30 minutos 3-4 veces por semana, pescados grasos (salmón, sardinas), huevos, productos lácteos enriquecidos, champiñones","El contexto proporcionado incluye una mención a la vitamina D, pero no detalla sus funciones ni dónde se encuentra. Por lo tanto, no puedo responder a tu pregunta basándome únicamente en la información proporcionada.
+",fail,"### Vitamina C
+
+**Funciones**
+- Antioxidante poderoso
+- Síntesis de colágeno
+- Absorción de hierro
+- Función inmunológica
+
+**Fuentes**
+- Cítricos: naranjas, limones, limas
+- Bayas: fresas, arándanos, frambuesas
+- Pimiento rojo
+- Tomate
+- Kiwi
+- Papaya
+- Brócoli
+- Coliflor
+
+**Deficiencia**
+- Escorbuto (histórico, raro hoy)
+- Débil cicatrización
+- Encías sangrantes
+- Fatiga
+
+**Nota importante**: La vitamina C se pierde con el calor, así que consume frutas y verduras crudas cuando sea posible.
+
+Vit",,neo4j
+¿Cuáles son los beneficios de la planificación de comidas?,"- nutrición mejorada: asegura variedad y balanceo de macronutrientes - control de peso y porciones - ahorro de dinero (compras eficientes, aprovecha ofertas) - reduce desperdicio de alimentos - menos estrés sobre qué comer - mayor consistencia y sostenibilidad - evita decisiones impulsivas poco saludables","La planificación de comidas ofrece varios beneficios. Ayuda a mejorar la nutrición, gastar menos dinero en comida, reducir el desperdicio de alimentos y evitar decisiones impulsivas que pueden ser poco saludables. Además, es más efectiva cuando se combina con la preparación de comidas (meal prep).
+",pass,"# Planificación de Comidas: Estrategia para Éxito Nutricional
+
+Planificar comidas es una de las estrategias más efectivas para lograr objetivos nutricionales. Quienes planifican sus comidas tienen mejor nutrición, gastan menos dinero, reducen desperdicio y evitan decisiones impulsivas poco saludables. La planificación es especialmente poderosa cuando se combina con preparación de comida (meal prep).
+
+## ¿Por qué Planificar Comidas?
+
+### Beneficios
+
+# Sueño y Descanso: Pilares del Bienestar
+
+El s",,neo4j
+¿Qué es el ayuno intermitente 16/8 y cuáles son sus beneficios?,"- formato: ayunas 16 horas, ventana de alimentación de 8 horas - fácil de implementar y flexible - mejora sensibilidad a insulina - promueve pérdida de peso - activa autofagia (limpieza celular) - beneficios metabólicos documentados - requiere disciplina","El ayuno intermitente 16/8 consiste en ayunar durante 16 horas y comer en una ventana de 8 horas.
+
+El ayuno intermitente ofrece beneficios significativos cuando se hace correctamente, pero requiere entendimiento y cuidado. Es un patrón de alimentación que alterna períodos de comer con períodos de ayuno, enfocándose en CUÁNDO comes en lugar de QUÉ comes.
+",pass,"## ¿Qué es el Ayuno Intermitente?
+
+El ayuno intermitente es un enfoque de alimentación que limita la ventana de tiempo en que comes. Durante el período de ayuno, generalmente solo consumes agua, café o té sin calorías. Durante la ventana de alimentación, comes normalmente (alimentos saludables).
+
+## Tipos de Ayuno Intermitente
+
+### 16/8 (La Más Popular)
+
+**Formato**: Ayunas 16 horas, comes en una ventana de 8 horas
+
+## Consejos Finales
+
+1. **Comienza lentamente**: no hagas 16/8 el primer día
+2. ",,neo4j
+¿Qué factores dañan el microbioma intestinal?,- antibióticos (destruyen bacterias buenas y malas) - pesticidas en alimentos no orgánicos - estrés crónico (reduce diversidad bacteriana) - dieta ultraprocesada sin fibra - falta de sueño (7-9 horas necesarias) - alcohol excesivo (daña pared intestinal) - falta de ejercicio (reduce diversidad),"Los factores que dañan el microbioma intestinal incluyen: el uso de antibióticos, pesticidas presentes en alimentos no orgánicos (especialmente vegetales), el estrés crónico, una dieta ultraprocesada (falta de fibra), el alcohol excesivo y la falta de sueño. Además, la falta de ejercicio también reduce la diversidad bacteriana.
+",pass,"**Falta de sueño**: desregula microbioma
+- Duerme 7-9 horas para microbioma sano
+
+**Alcohol excesivo**: daña pared intestinal
+- Permite ""fugas"" intestinales
+
+**Falta de ejercicio**: reduce diversidad bacteriana
+- El movimiento beneficia la digestión
+
+## Problemas Digestivos Comunes
+
+### Estreñimiento
+
+**Causas**
+- Falta de fibra
+- Deshidratación
+- Sedentarismo
+- Estrés
+- Medicamentos
+- Cambios de rutina
+
+## Conclusión
+
+Un sistema digestivo saludable es la base de la salud general. Comiendo consc",,neo4j
+¿Cómo se debe planificar una comida equilibrada?,- la planificación de comidas es estrategia efectiva - asegura nutrición mejorada - ayuda a balancear macronutrientes - control de peso y porciones - distribuir proteína a lo largo del día,"La planificación de comidas es una estrategia efectiva para lograr objetivos nutricionales. Planificar ayuda a mejorar la nutrición, gastar menos dinero, reducir el desperdicio de alimentos y evitar decisiones impulsivas poco saludables.
+
+Uno de los primeros pasos es evaluar tus necesidades. La planificación de comidas ofrece beneficios como ahorro de tiempo y energía, sostenibilidad de hábitos y más consistencia en la alimentación.
+",pass,"**Función Física**
+- Mejora equilibrio y coordinación
+- Aumenta la flexibilidad
+- Previene caídas en personas mayores
+- Mejora la movilidad general
+- Facilita actividades de la vida diaria
+
+## Tipos de Actividad Física Ligera
+
+### Caminar
+Es la forma más accesible y natural de actividad física ligera.
+
+# Estrés y Bienestar Mental: Salud Integral
+
+El bienestar mental es tan importante como la salud física para lograr una vida saludable y equilibrada. El estrés crónico afecta la alimentación, el s",,neo4j
+¿Cuáles son las etapas principales del proceso digestivo y cuánto tiempo toma cada una?,- boca (0-30 segundos) masticación - esófago (5-10 segundos) peristaltismo - estómago (1-4 horas) - intestino delgado (3-6 horas) absorción de nutrientes - intestino grueso (12-48 horas) - tiempo total varía según comida,"Las etapas principales del proceso digestivo son:
+
+1.  **Boca (0-30 segundos):** Comienza la digestión mecánica con la masticación y la digestión química con la saliva.
+2.  **Esófago (5-10 segundos):** El bolo alimenticio se transporta al estómago por peristaltismo.
+3.  **Estómago (1-4 horas):** El ácido clorhídrico y los movimientos mecánicos descomponen los alimentos formando una papilla llamada quimo. El tiempo depende del contenido graso, el tamaño de la comida y el estrés.
+4.  **Intestino Delgado (3-6 horas):** Ocurre la mayor absorción de nutrientes. El páncreas y el hígado liberan enzimas y bilis para ayudar en la digestión.
+",pass,"## El Proceso Digestivo
+
+### Etapa 1: Boca (0-30 segundos)
+- La masticación comienza la digestión mecánica
+- La saliva contiene enzimas que descomponen carbohidratos
+- **Importancia**: masticar bien (30-40 veces) facilita digestión
+
+### Etapa 2: Esófago (5-10 segundos)
+- El bolo alimenticio desciende por peristaltismo
+- Muscular, no requiere intervención
+
+# Digestión y Salud Intestinal: El Segundo Cerebro
+
+La salud digestiva es fundamental para el bienestar general. El sistema digestivo no solo ",,neo4j
+¿Qué funciones tiene el microbioma intestinal?,- beneficiarse de comer conscientemente con fibra y fermentados - beneficiarse de manejar el estrés - beneficiarse de moverse regularmente - mejora con dormir 7-9 horas - se daña con dieta ultraprocesada sin fibra - se daña con alcohol excesivo,"El microbioma intestinal tiene varias funciones importantes:
+
+*   **Inmunidad:** alberga el 70% del sistema inmunológico, protege contra patógenos y produce compuestos inmunomoduladores.
+*   **Producción de Nutrientes:** sintetiza vitaminas K y B12, produce ácidos grasos de cadena corta y facilita la absorción de minerales.
+*   En el intestino grueso, las bacterias intestinales fermentan la fibra y producen vitaminas K y B12.
+",fail,"**Falta de sueño**: desregula microbioma
+- Duerme 7-9 horas para microbioma sano
+
+**Alcohol excesivo**: daña pared intestinal
+- Permite ""fugas"" intestinales
+
+**Falta de ejercicio**: reduce diversidad bacteriana
+- El movimiento beneficia la digestión
+
+## Problemas Digestivos Comunes
+
+### Estreñimiento
+
+**Causas**
+- Falta de fibra
+- Deshidratación
+- Sedentarismo
+- Estrés
+- Medicamentos
+- Cambios de rutina
+
+## Conclusión
+
+Un sistema digestivo saludable es la base de la salud general. Comiendo consc",,neo4j
+¿Qué minerales son esenciales y para qué sirven?,- los minerales son micronutrientes - hierro y calcio son importantes - vitaminas también son micronutrientes - los alimentos proporcionan micronutrientes - se clasifican en macronutrientes y micronutrientes,"Los minerales son micronutrientes esenciales para que el cuerpo funcione correctamente. Regulan procesos vitales y previenen enfermedades. Se necesitan en cantidades pequeñas, pero su deficiencia puede causar problemas graves. Las frutas y verduras son ricas en minerales.
+",pass,"**Beneficios**
+- Ricas en vitaminas y minerales
+- Altas en fibra
+- Bajas en calorías
+- Satisfacen antojos de dulce naturalmente
+- Muy prácticas de llevar
+
+**Porciones Recomendadas**
+- Una fruta mediana
+- O una taza de berries
+- O varias uvas/cerezas
+
+### Frutas Secas: Nutrientes Concentrados
+
+### Grupos de Alimentos
+Una alimentación equilibrada debe incluir:
+1. **Frutas y verduras**: ricas en vitaminas, minerales y fibra
+2. **Granos y cereales**: fuente de energía y fibra (preferiblemente integr",,neo4j
